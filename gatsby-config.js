@@ -6,6 +6,7 @@ module.exports = {
       "gatsby-plugin-gatsby-cloud",
       "gatsby-plugin-image",
       "gatsby-plugin-sharp",
+      "gatsby-plugin-mdx",
       {
           resolve: "gatsby-source-filesystem",
           options: {
@@ -13,6 +14,18 @@ module.exports = {
               path: `${__dirname}/blog`,
           }
       },
-      "gatsby-plugin-mdx",
+      {
+          resolve: `gatsby-source-sqlite`,
+          options: {
+              fileName: './database/db.slite3',
+              queries: [
+                  {
+                      statement: 'SELECT * FROM series',
+                      idFieldName: 'name',
+                      name: 'series'
+                  }
+              ]
+          }
+      }
   ],
 };
